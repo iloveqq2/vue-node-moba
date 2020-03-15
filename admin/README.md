@@ -1,3 +1,12 @@
+no-unused-vars 报错配置 "rules": {
+      "generator-star-spacing": "off",
+      "no-tabs":"off",
+      "no-unused-vars":"off",
+      "no-console":"off",
+      "no-irregular-whitespace":"off",
+      "no-debugger": "off"
+    }
+
 # admin
 
 ## Project setup

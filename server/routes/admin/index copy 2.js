@@ -8,8 +8,8 @@ module.exports = async app => {
         mergeParams:true
     })
 
-    const authMiddleware = require('../../middleware/auth')()
-    const resourceMiddleware = require('../../middleware/resource')()
+    const authMiddleware = require('../../middleware/auth')
+    const resourceMiddleware = require('../../middleware/resource')
     // const req.Model = require('../../models/req.Model')
 
     // 添加分类
@@ -46,7 +46,7 @@ module.exports = async app => {
     })
     
     
-    app.use('/admin/api/rest/:resource',authMiddleware,resourceMiddleware,router)
+    app.use('/admin/api/rest/:resource',resourceMiddleware,router)
     const multer = require('multer')  // 这个中间件的作用是将上传的文件添加到req上，通过req.file便能获取
     const upload = multer({dest:__dirname+'/../../uploads'})
     app.post('/admin/api/upload',authMiddleware,upload.single('file'),async (req,res)=>{

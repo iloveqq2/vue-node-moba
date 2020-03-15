@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>分类列表</h1>
+    <h1>管理员列表</h1>
     <el-table :data="items">
       <el-table-column prop="_id" label="ID" width="240"></el-table-column>
       <el-table-column prop="name" label="分类名称" width="140"></el-table-column>
@@ -8,7 +8,7 @@
       <el-table-column fixed="right" label="操作" width="200">
         <template slot-scope="scope">
           <el-button
-            @click="$router.push(`/categories/edit/${scope.row._id}`)"
+            @click="$router.push(`/admin/edit/${scope.row._id}`)"
             type="text"
             size="small"
           >编辑</el-button>
@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     async fetch() {
-      const res = await this.$http.get("rest/categories");
+      const res = await this.$http.get("rest/admin_user");
       this.items = res.data;
     },
     async remove(row) {
@@ -38,7 +38,7 @@ export default {
         cancelButtonText: "取消",
         type: "warning"
       }).then(async () => {
-        const res = await this.$http.delete(`rest/categories/${row._id}`);
+        const res = await this.$http.delete(`rest/admin_user/${row._id}`);
         if (res.data.success) {
           this.$message({
             type: "success",

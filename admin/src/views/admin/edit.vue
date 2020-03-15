@@ -1,14 +1,12 @@
 <template>
     <div>
-        <h1>{{this.id?'新建':'修改'}}分类</h1>
+        <h1>{{this.id?'新建':'修改'}}管理员</h1>
         <el-form  label-width="120px" @submit.native.prevent="save()">
-            <el-form-item label="上级分类">
-                <el-select v-model="model.parent">
-                    <el-option v-for="item in parents" :key="item._id" :label="item.name" :value="item._id"></el-option>
-                </el-select>
+            <el-form-item label="用户名">
+                <el-input v-model="model.username"></el-input>
             </el-form-item>
-            <el-form-item label="名称">
-                <el-input v-model="model.name"></el-input>
+            <el-form-item label="密码">
+                <el-input typae="password" v-model="model.password"></el-input>
             </el-form-item>
             <el-form-item>
                 <el-button type="primary" native-type="submit">保存</el-button>
@@ -25,7 +23,8 @@ export default {
     data(){
         return {
             model:{
-                name:''
+                username:'',
+                password:''
             },
             parents:[],
         }
@@ -33,23 +32,24 @@ export default {
     methods:{
         async save(){
             if (this.id) {
-                await this.$http.put(`rest/categories/${this.id}`, this.model);
+                await this.$http.put(`rest/admin_user/${this.id}`, this.model);
             } else {
-                await this.$http.post(`rest/categories`, this.model);
+                await this.$http.post(`rest/admin_user`, this.model);
             }
             // await this.$http.put(`rest/categories/${this.id}`,this.model)
-            this.$router.push('/categories/list')
+            this.$router.push('/admin/list')
             this.$message({
                 type:'success',
                 message:'修改成功'
             })
         },
         async fetch(){
-            const res = await this.$http.get(`rest/categories/${this.id}`)
+            console.log('aaaaa')
+            const res = await this.$http.get(`rest/admin_user/${this.id}`)
             this.model = res.data
         },
         async fetchParents(){
-            const res = await this.$http.get(`rest/categories`)
+            const res = await this.$http.get(`rest/admin_user`)
             this.parents = res.data
         },
     },
