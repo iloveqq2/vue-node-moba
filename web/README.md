@@ -1,3 +1,5 @@
+# cnpm i -D sass sass-loader
+
 # web
 
 ## Project setup
