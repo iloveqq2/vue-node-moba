@@ -10,4 +10,6 @@
 
 # cnpm i http-assert --save
 
+# cnpm i require-all --save
+
 

@@ -1,5 +1,7 @@
 # cnpm i -D sass sass-loader
 
+# 默认text-align:left？
+
 # web
 
 ## Project setup
